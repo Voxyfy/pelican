@@ -5,8 +5,16 @@ enum TransferProtocol: String, CaseIterable, Identifiable, Codable, Sendable {
     case sftp, ftp, ftps, s3, r2, webdav
 
     var id: Self { self }
-    var isAvailable: Bool { [.sftp, .ftp, .ftps].contains(self) }
-    var defaultPort: Int { self == .sftp ? 22 : 21 }
+    var isAvailable: Bool { self != .webdav }
+    var defaultPort: Int {
+        switch self {
+        case .sftp: 22
+        case .ftp, .ftps: 21
+        case .s3, .r2, .webdav: 443
+        }
+    }
+    /// S3 and R2 sign in with an access key pair rather than a user name and password.
+    var usesAccessKeys: Bool { self == .s3 || self == .r2 }
 
     var title: String {
         switch self {

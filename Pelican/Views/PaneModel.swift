@@ -117,14 +117,30 @@ final class PaneModel {
         return make(suffix)
     }
 
-    /// Creates "untitled folder" and starts renaming it, like Finder.
+    /// Set when a new folder needs its name up front; the pane shows a name prompt.
+    var askingFolderName = false
+
+    /// Creates "untitled folder" and starts renaming it, like Finder, or asks for the name first.
     func newFolder() async {
+        if source.namesFolderFirst(in: path) {
+            askingFolderName = true
+            return
+        }
         let folder = path
         let target = (folder as NSString).appendingPathComponent(freeName(for: String(localized: "untitled folder"), in: folder))
         await perform(String(localized: "Created folder \(target).")) {
             try await self.source.createFolder(at: target)
             await self.reload()
             self.renaming = target
+        }
+    }
+
+    func newFolder(named rawName: String) async {
+        let name = rawName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return }
+        let target = (path as NSString).appendingPathComponent(name)
+        await perform(String(localized: "Created folder \(target).")) {
+            try await self.source.createFolder(at: target)
         }
     }
 

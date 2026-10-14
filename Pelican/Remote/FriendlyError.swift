@@ -9,6 +9,18 @@ enum FriendlyError {
         switch error {
         case let problem as SSHKey.Problem:
             return problem.localizedDescription
+        case let s3 as S3Error where ["InvalidAccessKeyId", "SignatureDoesNotMatch"].contains(s3.code):
+            return String(localized: "The access key ID or secret access key is incorrect.")
+        case let s3 as S3Error where s3.code == "AccessDenied" && server.remotePath?.isEmpty != false:
+            return String(localized: "This key can't list buckets. Enter a bucket name, for example /my-bucket.")
+        case let s3 as S3Error:
+            return transferMessage(for: s3)
+        case let url as URLError where url.code == .cannotFindHost:
+            return String(localized: "Can't find a server called \(server.host).")
+        case let url as URLError where url.code == .cannotConnectToHost:
+            return String(localized: "\(server.host) refused the connection on port \(String(server.port)).")
+        case let url as URLError where url.code == .badURL:
+            return String(localized: "Check the endpoint address.")
         case let ftp as FTPError where ftp.reply.code == 530:
             return String(localized: "The user name or password is incorrect.")
         case let ftp as FTPError where ftp.reply.code == 534 || (ftp.reply.code >= 500 && ftp.reply.text.uppercased().contains("TLS")):
@@ -51,6 +63,16 @@ enum FriendlyError {
             }
         }
         if error is FTPConnectionClosed { return String(localized: "The connection was lost.") }
+        if let s3 = error as? S3Error {
+            switch s3.code {
+            case "AccessDenied": return String(localized: "This key isn't allowed to do that.")
+            case "NoSuchBucket": return String(localized: "That bucket doesn't exist.")
+            case "BucketAlreadyExists": return String(localized: "That bucket name is taken. Bucket names are shared by everyone.")
+            case "BucketNotEmpty": return String(localized: "The bucket isn't empty.")
+            case "BucketRename": return String(localized: "Buckets can't be renamed.")
+            default: return s3.localizedDescription
+            }
+        }
         // Citadel throws a server status either bare or wrapped, depending on the call.
         let status: SFTPMessage.Status
         if let bare = error as? SFTPMessage.Status {

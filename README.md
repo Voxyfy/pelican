@@ -13,7 +13,7 @@
 
 Pelican moves files between your Mac and your servers. It's built with SwiftUI, runs only on macOS, and will be sold once on the Mac App Store for $4.99. No subscription.
 
-> **Status:** early development. SFTP, FTP and FTPS servers work: browsing, transfers and file operations.
+> **Status:** early development. SFTP, FTP, FTPS, Amazon S3 and Cloudflare R2 work: browsing, transfers and file operations.
 
 ## Features
 
@@ -23,7 +23,7 @@ Pelican moves files between your Mac and your servers. It's built with SwiftUI, 
 | 🔐 | SFTP with password, passwords kept in Keychain, host key check, Test Connection | Done |
 | 🔑 | SFTP with SSH key (ed25519; RSA on servers before OpenSSH 8.8) | Done |
 | 📡 | FTP and FTPS (explicit TLS, encrypted data connections, certificate approval) | Done |
-| ☁️ | Amazon S3 and Cloudflare R2 | Planned |
+| ☁️ | Amazon S3, Cloudflare R2 and S3-compatible storage (SigV4, multipart uploads, server-side copy) | Done |
 | ⭐️ | Saved servers | Done |
 | ↕️ | Drag and drop transfers with a queue and progress | Done |
 | 📁 | New folder, rename, move (drag), copy (⌥-drag), delete | Done |
@@ -82,6 +82,13 @@ docker run -d --name pelican-ftp -p 2121:21 -p 30000-30009:30000-30009 \
   -e TLS_ORG=Pelican -e TLS_C=TR -e TLS_USE_DSAPRAM=true stilliard/pure-ftpd
 ```
 
+And Versity Gateway for S3 (MinIO no longer publishes public images):
+
+```sh
+docker run -d --name pelican-s3 -p 9000:7070 -e ROOT_ACCESS_KEY_ID=pelican \
+  -e ROOT_SECRET_ACCESS_KEY=pelican-test-secret versity/versitygw posix /tmp/vgw
+```
+
 When a server isn't running, its tests are skipped.
 
 ### Known limit: RSA keys on newer servers
@@ -95,7 +102,7 @@ Pelican/
   App/         App entry point
   Model/       FileItem, Server, Favorites, Keychain, activity log, and the FileSource protocol
   Local/       This Mac: folder listing and sandbox folder access
-  Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO + NIOSSL), keys, trust, errors
+  Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO + NIOSSL), S3/R2 (URLSession + SigV4)
   Transfer/    Transfer queue, drag and drop, Server Activity popover
   Views/       Window, pane and navigation state
   Resources/   App icon (Icon Composer), string catalog, Info.plist, entitlements

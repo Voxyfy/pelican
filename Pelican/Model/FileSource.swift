@@ -20,6 +20,8 @@ protocol FileSource: Sendable {
     func move(_ path: String, to newPath: String) async throws
     func delete(_ item: FileItem) async throws
     func copy(_ item: FileItem, to newPath: String) async throws
+    /// True where a new folder can't be renamed afterwards (S3 buckets), so its name is asked first.
+    func namesFolderFirst(in folder: String) -> Bool
 }
 
 struct PaneShortcut: Hashable, Sendable {
@@ -30,6 +32,7 @@ struct PaneShortcut: Hashable, Sendable {
 
 extension FileSource {
     var shortcuts: [PaneShortcut] { [] }
+    func namesFolderFirst(in folder: String) -> Bool { false }
 
     /// Folders from the root down to `path`, for the path menu.
     func ancestors(of path: String) -> [String] {

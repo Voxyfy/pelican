@@ -116,8 +116,18 @@
         }
       }
     },
-    "/www/project": {
+    "AKIA…": {
       "shouldTranslate": false
+    },
+    "Access Key ID": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erişim Anahtarı Kimliği"
+          }
+        }
+      }
     },
     "Add to Servers": {
       "localizations": {
@@ -165,6 +175,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Geri"
+          }
+        }
+      }
+    },
+    "Bucket": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kova"
+          }
+        }
+      }
+    },
+    "Bucket names use lowercase letters, numbers and hyphens, and can't be changed later.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kova adlarında küçük harf, rakam ve kısa çizgi kullanılır. Ad sonradan değiştirilemez."
+          }
+        }
+      }
+    },
+    "Buckets can't be renamed.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kovaların adı değiştirilemez."
           }
         }
       }
@@ -241,6 +281,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ iptal edildi."
+          }
+        }
+      }
+    },
+    "Check the endpoint address.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uç nokta adresini kontrol edin."
           }
         }
       }
@@ -449,6 +499,16 @@
         }
       }
     },
+    "Create": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oluştur"
+          }
+        }
+      }
+    },
     "Created folder %@.": {
       "localizations": {
         "tr": {
@@ -616,6 +676,16 @@
         }
       }
     },
+    "Endpoint": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uç Nokta"
+          }
+        }
+      }
+    },
     "Errors Only": {
       "localizations": {
         "tr": {
@@ -739,6 +809,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adlar “/” içeremez."
+          }
+        }
+      }
+    },
+    "New Bucket": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Kova"
           }
         }
       }
@@ -906,6 +986,16 @@
         }
       }
     },
+    "Region": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölge"
+          }
+        }
+      }
+    },
     "Remote Path": {
       "localizations": {
         "tr": {
@@ -999,6 +1089,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sunucularda Ara"
+          }
+        }
+      }
+    },
+    "Secret Access Key": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizli Erişim Anahtarı"
           }
         }
       }
@@ -1104,12 +1204,52 @@
         }
       }
     },
+    "That bucket doesn't exist.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Böyle bir kova yok."
+          }
+        }
+      }
+    },
+    "That bucket name is taken. Bucket names are shared by everyone.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu kova adı alınmış. Kova adları tüm kullanıcılar arasında tektir."
+          }
+        }
+      }
+    },
     "That's a public key. Choose the file without .pub.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Bu bir açık anahtar. Sonu .pub olmayan dosyayı seçin."
+          }
+        }
+      }
+    },
+    "The access key ID or secret access key is incorrect.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erişim anahtarı kimliği veya gizli erişim anahtarı yanlış."
+          }
+        }
+      }
+    },
+    "The bucket isn't empty.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kova boş değil."
           }
         }
       }
@@ -1254,12 +1394,32 @@
         }
       }
     },
+    "This key can't list buckets. Enter a bucket name, for example /my-bucket.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu anahtar kovaları listeleyemiyor. Kova alanına kova adını yazın, örneğin /kovam."
+          }
+        }
+      }
+    },
     "This key is protected. Enter its passphrase.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Bu anahtar parola korumalı. Anahtar parolasını girin."
+          }
+        }
+      }
+    },
+    "This key isn't allowed to do that.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu anahtarın bu işlem için izni yok."
           }
         }
       }
@@ -1366,6 +1526,26 @@
         }
       }
     },
+    "account-id.r2.cloudflarestorage.com": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hesap-kimligi.r2.cloudflarestorage.com"
+          }
+        }
+      }
+    },
+    "bucket-name": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kova-adi"
+          }
+        }
+      }
+    },
     "key passphrase": {
       "localizations": {
         "tr": {
@@ -1386,6 +1566,16 @@
         }
       }
     },
+    "optional, e.g. /my-bucket": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "isteğe bağlı, örn. /kovam"
+          }
+        }
+      }
+    },
     "password": {
       "localizations": {
         "tr": {
@@ -1396,8 +1586,15 @@
         }
       }
     },
-    "server.com": {
-      "shouldTranslate": false
+    "secret": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gizli anahtar"
+          }
+        }
+      }
     },
     "untitled folder": {
       "localizations": {
@@ -1408,6 +1605,9 @@
           }
         }
       }
+    },
+    "us-east-1": {
+      "shouldTranslate": false
     },
     "“%@” already exists. Choose a different name.": {
       "localizations": {

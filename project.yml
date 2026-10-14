@@ -43,6 +43,8 @@ targets:
         CFBundleDisplayName: Pelican
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [en, tr]
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
         UTExportedTypeDeclarations:
           - UTTypeIdentifier: com.voxyfy.pelican.pane-items
             UTTypeDescription: Pelican Files

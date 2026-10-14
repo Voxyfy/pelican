@@ -9,6 +9,7 @@ struct PaneView<TopBar: View>: View {
     var copyWithin: (([FileItem], String) -> Void)?
     @ViewBuilder var topBar: TopBar
     @State private var pendingDelete: [FileItem]?
+    @State private var newFolderName = ""
     @State private var selection = Set<PaneRow.ID>()
     /// True while a drag hovers over the pane's empty space; rows highlight themselves natively.
     @State private var isDropTarget = false
@@ -59,6 +60,17 @@ struct PaneView<TopBar: View>: View {
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: { _ in
             Text(String(localized: "This can't be undone."))
+        }
+        .alert(String(localized: "New Bucket"), isPresented: $model.askingFolderName) {
+            TextField(String(localized: "bucket-name"), text: $newFolderName)
+            Button(String(localized: "Create")) {
+                let name = newFolderName
+                newFolderName = ""
+                Task { await model.newFolder(named: name) }
+            }
+            Button(String(localized: "Cancel"), role: .cancel) { newFolderName = "" }
+        } message: {
+            Text(String(localized: "Bucket names use lowercase letters, numbers and hyphens, and can't be changed later."))
         }
         .alert(String(localized: "Couldn't Complete"), isPresented: Binding(
             get: { model.operationError != nil }, set: { if !$0 { model.operationError = nil } })) {

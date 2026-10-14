@@ -34,6 +34,9 @@ enum Remote {
         case .ftp, .ftps:
             guard case .password(let password) = credential else { throw SSHKey.Problem.keyNeedsSFTP }
             return try await FTPFileSource.connect(to: server, password: password)
+        case .s3, .r2:
+            guard case .password(let secret) = credential else { throw SSHKey.Problem.keyNeedsSFTP }
+            return try await S3FileSource.connect(to: server, secret: secret)
         default:
             throw CocoaError(.featureUnsupported)
         }

@@ -9,7 +9,7 @@ root = pathlib.Path(__file__).resolve().parent.parent
 catalog_path = root / "Pelican/Resources/Localizable.xcstrings"
 tr = json.loads((root / "scripts/translations_tr.json").read_text())
 catalog = json.loads(catalog_path.read_text())
-same_everywhere = {"", "server.com", "/www/project", "Pelican — %@", "%@\n\n%@"}
+same_everywhere = {"", "AKIA…", "us-east-1", "server.com", "/www/project", "Pelican — %@", "%@\n\n%@"}
 
 missing = []
 for key, entry in catalog["strings"].items():

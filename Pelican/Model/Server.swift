@@ -13,6 +13,8 @@ struct Server: Identifiable, Codable, Hashable, Sendable {
     var usesKey: Bool? = nil
     /// File name of the chosen key, shown in the form; the key itself lives in Keychain.
     var keyName: String? = nil
+    /// S3 region, e.g. "eu-central-1". Buckets elsewhere are found automatically.
+    var region: String? = nil
     /// Stored as optional so servers saved before FTP support still decode (as SFTP).
     var protocolKind: TransferProtocol? = nil
 

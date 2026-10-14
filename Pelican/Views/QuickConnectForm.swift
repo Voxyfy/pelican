@@ -60,6 +60,14 @@ struct QuickConnectForm: View {
         return .password(password)
     }
 
+    private var addressPrompt: String {
+        switch server.kind {
+        case .s3: "s3.amazonaws.com"
+        case .r2: String(localized: "account-id.r2.cloudflarestorage.com")
+        default: "server.com"
+        }
+    }
+
     /// Switching protocol also switches the port, unless the user typed a custom one.
     private var protocolChoice: Binding<TransferProtocol> {
         Binding(get: { server.kind }, set: { new in
@@ -99,14 +107,21 @@ struct QuickConnectForm: View {
                 row(String(localized: "Name")) {
                     TextField("", text: $server.name, prompt: Text(String(localized: "Optional")))
                 }
-                row(String(localized: "Address")) {
-                    TextField("", text: $server.host, prompt: Text("server.com"))
+                row(server.kind.usesAccessKeys ? String(localized: "Endpoint") : String(localized: "Address")) {
+                    TextField("", text: $server.host, prompt: Text(addressPrompt))
                     Text(String(localized: "Port")).foregroundStyle(.secondary)
                     TextField("", value: $server.port, format: .number.grouping(.never))
                         .frame(width: 48)
                 }
-                row(String(localized: "User Name")) {
-                    TextField("", text: $server.username, prompt: Text("me"))
+                if server.kind == .s3 {
+                    row(String(localized: "Region")) {
+                        TextField("", text: Binding(get: { server.region ?? "" },
+                                                    set: { server.region = $0.isEmpty ? nil : $0 }),
+                                  prompt: Text("us-east-1"))
+                    }
+                }
+                row(server.kind.usesAccessKeys ? String(localized: "Access Key ID") : String(localized: "User Name")) {
+                    TextField("", text: $server.username, prompt: Text(server.kind.usesAccessKeys ? "AKIA…" : "me"))
                 }
                 if server.kind == .sftp {
                 row(String(localized: "Sign In With")) {
@@ -147,12 +162,15 @@ struct QuickConnectForm: View {
                         }
                     }
                 } else {
-                    row(String(localized: "Password")) {
-                        SecureField("", text: $password, prompt: Text(String(localized: "password")))
+                    row(server.kind.usesAccessKeys ? String(localized: "Secret Access Key") : String(localized: "Password")) {
+                        SecureField("", text: $password, prompt: Text(server.kind.usesAccessKeys
+                            ? String(localized: "secret") : String(localized: "password")))
                     }
                 }
-                row(String(localized: "Remote Path")) {
-                    TextField("", text: $remotePath, prompt: Text("/www/project"))
+                row(server.kind.usesAccessKeys ? String(localized: "Bucket") : String(localized: "Remote Path")) {
+                    TextField("", text: $remotePath,
+                              prompt: Text(server.kind.usesAccessKeys ? String(localized: "optional, e.g. /my-bucket")
+                                                                      : "/www/project"))
                 }
                 .padding(.top, 14)
             }
