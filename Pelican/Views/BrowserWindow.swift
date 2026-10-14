@@ -8,6 +8,8 @@ struct BrowserWindow: View {
     @State private var tab: RemoteSide.Tab = .quickConnect
     @State private var showHostKeyAlert = false
     @State private var queue = TransferQueue()
+    @State private var deployTargets = DeployTargets()
+    @State private var showDeploy = false
     @State private var conflict: Conflict?
 
     /// A transfer waiting on "replace or skip?" because some names already exist at the destination.
@@ -35,8 +37,26 @@ struct BrowserWindow: View {
             }
         }
         .toolbar {
+            if connection.server != nil {
+                ToolbarItem {
+                    Button { showDeploy = true } label: {
+                        Label(String(localized: "Publish"), systemImage: "paperplane.fill")
+                    }
+                    .help(String(localized: "Publish a folder from this Mac"))
+                }
+            }
             ToolbarItem {
                 ActivityButton(queue: queue, log: ActivityLog.shared)
+            }
+        }
+        .sheet(isPresented: $showDeploy) {
+            if let server = connection.server, let remote = connection.pane,
+               let source = remote.source as? any RemoteSource {
+                DeploySheet(server: server, source: source, currentRemotePath: remote.path,
+                            isSaved: connection.favorites.servers.contains { $0.id == server.id },
+                            queue: queue, targets: deployTargets) {
+                    Task { await remote.reloadAll() }
+                }
             }
         }
         .alert(conflictTitle, isPresented: Binding(get: { conflict != nil }, set: { if !$0 { conflict = nil } }),

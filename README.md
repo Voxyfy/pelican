@@ -30,7 +30,7 @@ Pelican moves files between your Mac and your servers. It's built with SwiftUI, 
 | 📋 | Server Activity: transfers and a copyable log, from the toolbar | Done |
 | 🌍 | English and Turkish | Done |
 | ✏️ | Edit a remote file in your editor, upload on save | Planned |
-| 🚀 | One-click deploy of a local folder to `public_html`, then purge the Cloudflare cache | Planned |
+| 🚀 | Publish: send only what changed from a local folder (e.g. to `public_html`), with excludes, preview, optional deletions and Cloudflare cache purge | Done |
 
 ## Requirements
 
@@ -104,6 +104,7 @@ Pelican/
   Local/       This Mac: folder listing and sandbox folder access
   Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO + NIOSSL), S3/R2 (URLSession + SigV4)
   Transfer/    Transfer queue, drag and drop, Server Activity popover
+  Deploy/      Publish: site targets, change detection against the last publish, Cloudflare purge
   Views/       Window, pane and navigation state
   Resources/   App icon (Icon Composer), string catalog, Info.plist, entitlements
 scripts/       Turkish translations and the script that fills the string catalog

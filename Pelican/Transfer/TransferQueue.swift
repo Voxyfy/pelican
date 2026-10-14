@@ -151,6 +151,37 @@ final class TransferQueue {
         }
     }
 
+    /// Publishes a deploy plan as one transfer: folders first, then changed files, then deletions.
+    @discardableResult
+    func deploy(_ plan: DeployPlan, name: String, to remoteRoot: String, via server: any RemoteSource,
+                onFinish: @escaping () -> Void) -> Transfer {
+        let transfer = Transfer(direction: .upload, name: name, destination: remoteRoot, onFinish: onFinish) { transfer in
+            transfer.setTotal(plan.uploadBytes)
+            let report = transfer.reporter()
+            func remote(_ relative: String) -> String { (remoteRoot as NSString).appendingPathComponent(relative) }
+            // The target may be new, with parents missing too: create each level that isn't there.
+            var level = ""
+            for component in remoteRoot.split(separator: "/") {
+                level += "/" + component
+                try await server.makeDirectory(level)
+            }
+            for folder in plan.foldersToCreate {
+                try Task.checkCancellation()
+                try await server.makeDirectory(remote(folder))
+            }
+            for file in plan.uploads {
+                try Task.checkCancellation()
+                try await server.upload(from: file.url, to: remote(file.relative), progress: report)
+            }
+            for relative in plan.deletions {
+                try Task.checkCancellation()
+                try await server.remove(remote(relative), isDirectory: false)
+            }
+        }
+        add(transfer)
+        return transfer
+    }
+
     func cancel(_ transfer: Transfer) {
         if transfer.state == .waiting {
             transfer.state = .cancelled
