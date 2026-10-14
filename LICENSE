@@ -1,0 +1,29 @@
+Pelican
+Copyright © 2026 Batuhan Haymana. All rights reserved.
+
+This repository is source-available, not open source. You may view and read the source
+code here. No other rights are granted.
+
+Without prior written permission from the copyright holder you may not:
+
+  - use, build, run or install this source code, in whole or in part;
+  - copy, modify, translate or create derivative works of it;
+  - distribute, publish, sublicense, sell, rent or lend it, or any binary built from it;
+  - use it, or any part of it, in another product or service, commercial or not;
+  - remove or change this notice.
+
+Viewing this repository on GitHub, including the copies GitHub's Terms of Service allow
+it to make, does not grant any license beyond reading.
+
+Pelican is distributed only through the Mac App Store, under Apple's Standard Licensed
+Application End User License Agreement: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+
+Third-party components keep their own licenses, which are listed with their full text
+in the app under Pelican › About Pelican, and in Pelican/Resources/Credits.html:
+Citadel and BigInt (MIT); SwiftNIO, swift-nio-ssh, swift-nio-ssl, swift-crypto,
+swift-asn1, swift-atomics, swift-collections, swift-log and swift-system (Apache 2.0).
+Nothing in this notice limits the rights those licenses grant for those components.
+
+THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+Permission requests: haymana.batuhan@gmail.com

@@ -140,4 +140,6 @@ Pelican runs in the App Sandbox, as the Mac App Store requires. On first launch 
 
 Pelican is made by [Voxyfy](https://voxyfy.github.io). Questions and bug reports: haymana.batuhan@gmail.com
 
-© 2026 Voxyfy. All rights reserved.
+## License
+
+Source available, **not open source**: © 2026 Batuhan Haymana, all rights reserved. You may read the code; you may not use, build, modify or distribute it without written permission. See [LICENSE](LICENSE). Third-party libraries keep their own MIT and Apache 2.0 licenses (listed in the app's About window; regenerate with `python3 scripts/make_credits.py`).

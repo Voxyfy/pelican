@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelican — Support</title>
+<link rel="icon" href="assets/icon.png">
+<style>
+:root{--bg:#0a0a0c;--fg:#f5f5f7;--muted:#9a9aa3;--line:rgba(255,255,255,.08)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+a{color:var(--fg)}h1{letter-spacing:-.02em}h2{margin-top:36px;font-size:20px}p,li{color:#d0d0d5}.muted{color:var(--muted)}
+details{border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:10px 0}summary{cursor:pointer;font-weight:600}
+hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+</style>
+</head>
+<body><div class="wrap">
+<p><a href="index.html">← Pelican</a></p>
+<h1>Support</h1>
+<p>Email <a href="mailto:haymana.batuhan@gmail.com">haymana.batuhan@gmail.com</a>. If something went wrong, open the ↑↓ button in the toolbar, choose Copy Log and paste it into your email; it helps a lot.</p>
+<h2>Frequently asked</h2>
+<details><summary>Pelican asks to "Trust This Server?"</summary><p>The first time you connect, Pelican shows the server's fingerprint (or, for FTPS, its certificate) and asks you to confirm it. After that it warns you if it ever changes, which can mean someone is intercepting the connection. Shared hosting often uses its own FTPS certificate; trust it if you expect that.</p></details>
+<details><summary>My RSA key works in Terminal but not in Pelican.</summary><p>Newer servers (OpenSSH 8.8 and later) refuse the RSA signature Pelican currently uses. Use an ed25519 key: <code>ssh-keygen -t ed25519</code>, then add the new public key to the server's authorized_keys.</p></details>
+<details><summary>"The server doesn't allow this here."</summary><p>Your account can't write to that folder, often the top folder of the server. Open your site's folder (for example public_html) and try again.</p></details>
+<details><summary>My S3 key can't list buckets.</summary><p>Keys limited to one bucket can't list the others. Enter the bucket name in the Bucket field, for example <code>/my-bucket</code>.</p></details>
+<details><summary>How does Publish decide what changed?</summary><p>It remembers each file's size and date from your last publish and sends files that are new or edited since, plus any that disappeared from the server. Deleting files on the server is off unless you turn it on.</p></details>
+<hr>
+<h1 lang="tr">Destek</h1>
+<div lang="tr">
+<p><a href="mailto:haymana.batuhan@gmail.com">haymana.batuhan@gmail.com</a> adresine yazın. Bir sorun olduysa araç çubuğundaki ↑↓ düğmesinden Kaydı Kopyala'yı seçip e-postanıza yapıştırın; çok yardımcı olur.</p>
+<details><summary>Pelican "Bu Sunucuya Güvenilsin mi?" diye soruyor.</summary><p>İlk bağlantıda Pelican sunucunun parmak izini (FTPS'te sertifikasını) gösterip onayınızı ister. Sonra değişirse uyarır; bu, bağlantının araya giren biri tarafından dinlendiği anlamına gelebilir. Paylaşımlı hostingler çoğu zaman kendi FTPS sertifikasını kullanır; bunu bekliyorsanız güvenin.</p></details>
+<details><summary>RSA anahtarım Terminal'de çalışıyor ama Pelican'da çalışmıyor.</summary><p>Yeni sunucular (OpenSSH 8.8 ve sonrası) Pelican'ın şu an kullandığı RSA imzasını reddediyor. ed25519 anahtarı kullanın: <code>ssh-keygen -t ed25519</code>, sonra yeni açık anahtarı sunucudaki authorized_keys dosyasına ekleyin.</p></details>
+<details><summary>"Sunucu burada bu işleme izin vermiyor."</summary><p>Hesabınızın o klasöre yazma izni yok; çoğu zaman sunucunun en üst klasörüdür. Sitenizin klasörünü (örneğin public_html) açıp tekrar deneyin.</p></details>
+<details><summary>S3 anahtarım kovaları listeleyemiyor.</summary><p>Tek bir kovayla sınırlı anahtarlar diğer kovaları listeleyemez. Kova alanına kova adını yazın, örneğin <code>/kovam</code>.</p></details>
+<details><summary>Yayınla neyin değiştiğine nasıl karar veriyor?</summary><p>Son yayındaki her dosyanın boyutunu ve tarihini hatırlar; o zamandan beri yeni olan ya da değişen dosyaları, ayrıca sunucudan kaybolanları gönderir. Sunucudaki dosyaları silmek siz açmadıkça kapalıdır.</p></details>
+</div>
+</div></body></html>
