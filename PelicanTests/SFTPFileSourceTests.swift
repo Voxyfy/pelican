@@ -26,7 +26,8 @@ final class SFTPFileSourceTests: XCTestCase {
         XCTAssertEqual(source.startPath, "/")
 
         let upload = try await source.list("/upload")
-        XCTAssertEqual(Set(upload.map(\.name)), ["public_html", "logs", ".htaccess"])
+        // Other tests and manual tries may leave things here; these three are always present.
+        XCTAssertTrue(Set(upload.map(\.name)).isSuperset(of: ["public_html", "logs", ".htaccess"]))
         XCTAssertTrue(upload.first { $0.name == "public_html" }!.isDirectory)
 
         let logs = try await source.list("/upload/logs")

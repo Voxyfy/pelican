@@ -1,7 +1,7 @@
 import Foundation
 import NIOCore
 import NIOPosix
-import NIOSSL
+import PelicanTLS
 
 /// One FTP control connection. FTP runs one command at a time, so every exchange takes
 /// the connection's lock; listing and transfers use separate clients to overlap.
@@ -13,6 +13,9 @@ actor FTPClient {
     private let channel: Channel
     private var replies: AsyncThrowingStream<FTPReply, Error>.AsyncIterator
     private let check: FTPCertificateCheck
+    /// Shared by the control connection and every data connection, so data connections resume
+    /// the control connection's TLS session as most FTPS servers require.
+    private let tlsGroup: TLSSessionGroup
     private var supportsMLSD = false
     private var busy = false
     private var waiters: [CheckedContinuation<Void, Never>] = []
@@ -25,6 +28,8 @@ actor FTPClient {
         self.channel = channel
         self.replies = handler.replies.makeAsyncIterator()
         self.check = check
+        let isAddress = host.allSatisfy { $0.isNumber || $0 == "." || $0 == ":" }
+        self.tlsGroup = TLSSessionGroup(serverName: isAddress ? nil : host) { chain, done in check.verify(chain, done) }
     }
 
     // MARK: Connecting
@@ -51,7 +56,7 @@ actor FTPClient {
         try await expect(nil, 200..<300) // greeting
         if usesTLS {
             try await expect("AUTH TLS", 200..<300)
-            let tls = try makeTLSHandler()
+            let tls = TLSHandler(group: tlsGroup, resume: false)
             try await channel.pipeline.addHandler(tls, position: .first).get()
             try await expect("PBSZ 0", 200..<300)
             try await expect("PROT P", 200..<300)
@@ -66,18 +71,6 @@ actor FTPClient {
         try await expect("TYPE I", 200..<300)
         let features = try await command("FEAT")
         supportsMLSD = features.lines.contains { $0.uppercased().contains("MLST") }
-    }
-
-    private func makeTLSHandler() throws -> NIOSSLClientHandler {
-        var configuration = TLSConfiguration.makeClientConfiguration()
-        // The custom callback checks the chain and host name with macOS trust (or the user's
-        // earlier approval), so NIOSSL mustn't reject a user-approved certificate on the name.
-        configuration.certificateVerification = .noHostnameVerification
-        let context = try NIOSSLContext(configuration: configuration)
-        let isAddress = host.allSatisfy { $0.isNumber || $0 == "." || $0 == ":" }
-        let check = self.check
-        return try NIOSSLClientHandler(context: context, serverHostname: isAddress ? nil : host,
-                                       customVerificationCallback: { check.verify($0, $1) })
     }
 
     func quit() async {
@@ -214,12 +207,12 @@ actor FTPClient {
         }
         guard let dataPort else { throw FTPConnectionClosed() }
         let handler = FTPDataHandler()
-        let tls = usesTLS ? try makeTLSHandler() : nil
+        let tls = usesTLS ? TLSHandler(group: tlsGroup, resume: true) : nil
         let channel = try await ClientBootstrap(group: MultiThreadedEventLoopGroup.singleton)
             .connectTimeout(.seconds(15))
             .channelInitializer { channel in
                 if let tls {
-                    return channel.pipeline.addHandlers([tls, handler])
+                    return channel.pipeline.addHandlers([tls, handler] as [ChannelHandler])
                 }
                 return channel.pipeline.addHandler(handler)
             }

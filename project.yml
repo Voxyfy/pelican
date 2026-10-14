@@ -12,6 +12,9 @@ packages:
   NIOSSL:
     url: https://github.com/apple/swift-nio-ssl
     from: "2.29.0"
+  NIO:
+    url: https://github.com/apple/swift-nio
+    from: "2.80.0"
 settings:
   base:
     SWIFT_VERSION: "6.0"
@@ -30,6 +33,7 @@ targets:
       - package: Citadel
       - package: NIOSSL
         product: NIOSSL
+      - target: PelicanTLS
     entitlements:
       path: Pelican/Resources/Pelican.entitlements
       properties:
@@ -56,6 +60,21 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.voxyfy.pelican
         ENABLE_HARDENED_RUNTIME: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  PelicanTLS:
+    type: framework
+    platform: macOS
+    sources:
+      - PelicanTLS
+    dependencies:
+      - package: NIOSSL
+        product: NIOSSL
+      - package: NIO
+        product: NIOCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.voxyfy.pelican.tls
+        GENERATE_INFOPLIST_FILE: YES
+        SKIP_INSTALL: YES
   PelicanTests:
     type: bundle.unit-test
     platform: macOS
@@ -67,6 +86,7 @@ schemes:
   Pelican:
     build:
       targets:
+        PelicanTLS: all
         Pelican: all
         PelicanTests: [test]
     test:

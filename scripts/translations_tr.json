@@ -199,5 +199,6 @@
   "skipped": "atlanacak",
   "No Folders Here": "Burada Klasör Yok",
   "Choose this folder, or make a new one inside it.": "Bu klasörü seçin ya da içinde yeni bir klasör oluşturun.",
-  "Choose This Folder": "Bu Klasörü Seç"
+  "Choose This Folder": "Bu Klasörü Seç",
+  "This server requires TLS session reuse on file transfers, which Pelican doesn't support yet. Use SFTP or plain FTP for now.": "Bu sunucu dosya aktarımında TLS oturumunun yeniden kullanılmasını istiyor; Pelican bunu henüz desteklemiyor. Şimdilik SFTP ya da düz FTP kullanın."
 }

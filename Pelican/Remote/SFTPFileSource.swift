@@ -41,6 +41,7 @@ final class SFTPFileSource: RemoteSource, @unchecked Sendable {
             hostKeyValidator: .custom(validator)
         )
         settings.connectTimeout = .seconds(15)
+        settings.algorithms = compatibleAlgorithms
         let ssh: SSHClient
         do {
             ssh = try await SSHClient.connect(to: settings)
@@ -57,6 +58,16 @@ final class SFTPFileSource: RemoteSource, @unchecked Sendable {
         let requested = server.remotePath?.trimmingCharacters(in: .whitespaces) ?? ""
         let start = (try? await sftp.getRealPath(atPath: requested.isEmpty ? "." : requested)) ?? "/"
         return SFTPFileSource(server: server, ssh: ssh, sftp: sftp, startPath: start)
+    }
+
+    /// NIOSSH only offers AES-GCM, whose key exchange sends an empty MAC list. OpenSSH accepts
+    /// that; stricter servers (Rebex, some appliances) stall. AES-CTR with HMAC fills the list and
+    /// works on its own where GCM isn't offered; DH group 14 covers older servers' key exchange.
+    private static var compatibleAlgorithms: SSHAlgorithms {
+        var algorithms = SSHAlgorithms()
+        algorithms.transportProtectionSchemes = .add([AES128CTR.self])
+        algorithms.keyExchangeAlgorithms = .add([DiffieHellmanGroup14Sha256.self])
+        return algorithms
     }
 
     func list(_ path: String) async throws -> [FileItem] {

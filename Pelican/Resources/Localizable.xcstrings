@@ -1836,6 +1836,16 @@
         }
       }
     },
+    "This server requires TLS session reuse on file transfers, which Pelican doesn't support yet. Use SFTP or plain FTP for now.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu sunucu dosya aktarımında TLS oturumunun yeniden kullanılmasını istiyor; Pelican bunu henüz desteklemiyor. Şimdilik SFTP ya da düz FTP kullanın."
+          }
+        }
+      }
+    },
     "To Delete": {
       "localizations": {
         "tr": {

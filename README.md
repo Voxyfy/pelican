@@ -22,7 +22,7 @@ Pelican moves files between your Mac and your servers. It's built with SwiftUI, 
 | 🗂 | Dual-pane browser: this Mac on the left, the server on the right | Done |
 | 🔐 | SFTP with password, passwords kept in Keychain, host key check, Test Connection | Done |
 | 🔑 | SFTP with SSH key (ed25519; RSA on servers before OpenSSH 8.8) | Done |
-| 📡 | FTP and FTPS (explicit TLS, encrypted data connections, certificate approval) | Done |
+| 📡 | FTP and FTPS (explicit TLS, encrypted data connections with TLS session reuse, certificate approval) | Done |
 | ☁️ | Amazon S3, Cloudflare R2 and S3-compatible storage (SigV4, multipart uploads, server-side copy) | Done |
 | ⭐️ | Saved servers | Done |
 | ↕️ | Drag and drop transfers with a queue and progress | Done |
@@ -89,7 +89,11 @@ docker run -d --name pelican-s3 -p 9000:7070 -e ROOT_ACCESS_KEY_ID=pelican \
   -e ROOT_SECRET_ACCESS_KEY=pelican-test-secret versity/versitygw posix /tmp/vgw
 ```
 
-When a server isn't running, its tests are skipped.
+When a server isn't running, its tests are skipped. `PublicServerTests` also use Rebex's public read-only demo (test.rebex.net), which is stricter than the containers: it needs a MAC in SSH key exchange and TLS session reuse on FTPS data connections. Run tests with a time limit so a hang can't stall the run:
+
+```sh
+xcodebuild -scheme Pelican test -test-timeouts-enabled YES -default-test-execution-time-allowance 120
+```
 
 ### Known limit: RSA keys on newer servers
 
@@ -102,7 +106,8 @@ Pelican/
   App/         App entry point
   Model/       FileItem, Server, Favorites, Keychain, activity log, and the FileSource protocol
   Local/       This Mac: folder listing and sandbox folder access
-  Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO + NIOSSL), S3/R2 (URLSession + SigV4)
+  Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO), S3/R2 (URLSession + SigV4)
+PelicanTLS/    TLS client on BoringSSL that resumes sessions across connections (FTPS data channels)
   Transfer/    Transfer queue, drag and drop, Server Activity popover
   Deploy/      Publish: site targets, change detection against the last publish, Cloudflare purge
   Views/       Window, pane and navigation state

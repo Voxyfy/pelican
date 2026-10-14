@@ -2,7 +2,6 @@ import Crypto
 import Foundation
 import NIOConcurrencyHelpers
 import NIOCore
-import NIOSSL
 import Security
 
 /// A complete FTP server reply: "230 Logged in" or a multi-line "211-…/211 End".
@@ -101,12 +100,7 @@ final class FTPDataHandler: ChannelInboundHandler, @unchecked Sendable {
     }
 
     func errorCaught(context: ChannelHandlerContext, error: Error) {
-        // Many servers end TLS data connections without a close_notify; the data is complete.
-        if case NIOSSLError.uncleanShutdown = error {
-            continuation.finish()
-        } else {
-            continuation.finish(throwing: error)
-        }
+        continuation.finish(throwing: error)
         context.close(promise: nil)
     }
 }
@@ -130,12 +124,12 @@ final class FTPCertificateCheck: Sendable {
         "cert " + Data(SHA256.hash(data: der)).base64EncodedString()
     }
 
-    func verify(_ chain: [NIOSSLCertificate], _ promise: EventLoopPromise<NIOSSLVerificationResult>) {
-        let ders = chain.compactMap { try? Data($0.toDERBytes()) }
-        guard let leaf = ders.first else { return promise.succeed(.failed) }
+    /// Decides on a certificate chain (DER, leaf first) and calls `done` with the answer.
+    func verify(_ ders: [Data], _ done: @escaping @Sendable (Bool) -> Void) {
+        guard let leaf = ders.first else { return done(false) }
         let presented = Self.trustValue(forDER: leaf)
         let known = HostKeys.trusted(for: host, port: port)
-        if known == presented { return promise.succeed(.certificateVerified) }
+        if known == presented { return done(true) }
         let host = self.host
         let port = self.port
         // Trust evaluation can touch the network (revocation), so keep it off the event loop.
@@ -144,12 +138,12 @@ final class FTPCertificateCheck: Sendable {
             var trust: SecTrust?
             SecTrustCreateWithCertificates(certificates as CFArray, SecPolicyCreateSSL(true, host as CFString), &trust)
             if let trust, SecTrustEvaluateWithError(trust, nil) {
-                promise.succeed(.certificateVerified)
+                done(true)
             } else {
                 let error = HostKeyError(host: host, port: port, presentedKey: presented,
                                          changed: known != nil, isCertificate: true)
                 self.rejected.withLockedValue { $0 = error }
-                promise.succeed(.failed)
+                done(false)
             }
         }
     }

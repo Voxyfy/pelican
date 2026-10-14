@@ -55,6 +55,9 @@ enum FriendlyError {
     /// Errors while reading or writing files, where there's no server address to mention.
     static func transferMessage(for error: Error) -> String {
         if let ftp = error as? FTPError {
+            if ftp.reply.code == 425, ftp.reply.text.lowercased().contains("resum") {
+                return String(localized: "This server requires TLS session reuse on file transfers, which Pelican doesn't support yet. Use SFTP or plain FTP for now.")
+            }
             switch ftp.reply.code {
             case 421, 425, 426: return String(localized: "The connection was lost.")
             case 550, 553: return String(localized: "The server refused: \(ftp.reply.text)")
