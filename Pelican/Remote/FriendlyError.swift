@@ -9,6 +9,12 @@ enum FriendlyError {
         switch error {
         case let problem as SSHKey.Problem:
             return problem.localizedDescription
+        case let ftp as FTPError where ftp.reply.code == 530:
+            return String(localized: "The user name or password is incorrect.")
+        case let ftp as FTPError where ftp.reply.code == 534 || (ftp.reply.code >= 500 && ftp.reply.text.uppercased().contains("TLS")):
+            return String(localized: "\(server.host) doesn't offer FTP with TLS/SSL. Try plain FTP, or ask your host.")
+        case is FTPConnectionClosed:
+            return String(localized: "The connection was lost.")
         case SSHClientError.allAuthenticationOptionsFailed where server.usesKey == true:
             return String(localized: "The server didn't accept this key. Check that its public key is in authorized_keys.")
         case SSHClientError.allAuthenticationOptionsFailed,
@@ -36,6 +42,15 @@ enum FriendlyError {
 
     /// Errors while reading or writing files, where there's no server address to mention.
     static func transferMessage(for error: Error) -> String {
+        if let ftp = error as? FTPError {
+            switch ftp.reply.code {
+            case 421, 425, 426: return String(localized: "The connection was lost.")
+            case 550, 553: return String(localized: "The server refused: \(ftp.reply.text)")
+            case 552: return String(localized: "The server is out of space for this file.")
+            default: return "\(ftp.reply.code) \(ftp.reply.text)"
+            }
+        }
+        if error is FTPConnectionClosed { return String(localized: "The connection was lost.") }
         // Citadel throws a server status either bare or wrapped, depending on the call.
         let status: SFTPMessage.Status
         if let bare = error as? SFTPMessage.Status {

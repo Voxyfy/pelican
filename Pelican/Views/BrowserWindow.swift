@@ -143,7 +143,7 @@ struct BrowserWindow: View {
     }
 
     private func start(_ items: [FileItem], _ direction: Transfer.Direction, into folder: String) {
-        guard !items.isEmpty, let remote = connection.pane, let server = remote.source as? SFTPFileSource,
+        guard !items.isEmpty, let remote = connection.pane, let server = remote.source as? any RemoteSource,
               let localPane else { return }
         switch direction {
         case .upload:
@@ -157,7 +157,7 @@ struct BrowserWindow: View {
 
     /// ⌥-drag inside the server pane: copies through this Mac, renaming if the name is taken.
     private func copyOnServer(_ items: [FileItem], _ folder: String) {
-        guard let remote = connection.pane, let server = remote.source as? SFTPFileSource else { return }
+        guard let remote = connection.pane, let server = remote.source as? any RemoteSource else { return }
         let named = items
             .filter { folder != $0.path && !folder.hasPrefix($0.path + "/") }
             .map { ($0, remote.freeName(for: $0.name, in: folder, copy: true)) }

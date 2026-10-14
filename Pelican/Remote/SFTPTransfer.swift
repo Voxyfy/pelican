@@ -11,16 +11,6 @@ extension SFTPFileSource {
     private static let chunkSize = 32_000
     private static let window = 16
 
-    /// Everything under `path` (files and folders), depth first, for folder downloads.
-    func walk(_ path: String) async throws -> [FileItem] {
-        var result: [FileItem] = []
-        for item in try await list(path) {
-            result.append(item)
-            if item.isDirectory { result += try await walk(item.path) }
-        }
-        return result
-    }
-
     /// Creates the folder unless it's already there.
     func makeDirectory(_ path: String) async throws {
         do {

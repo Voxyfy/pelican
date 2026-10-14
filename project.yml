@@ -9,6 +9,9 @@ packages:
   Citadel:
     url: https://github.com/orlandos-nl/Citadel
     from: "0.9.0"
+  NIOSSL:
+    url: https://github.com/apple/swift-nio-ssl
+    from: "2.29.0"
 settings:
   base:
     SWIFT_VERSION: "6.0"
@@ -25,6 +28,8 @@ targets:
       - Pelican
     dependencies:
       - package: Citadel
+      - package: NIOSSL
+        product: NIOSSL
     entitlements:
       path: Pelican/Resources/Pelican.entitlements
       properties:

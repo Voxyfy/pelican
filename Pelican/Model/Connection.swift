@@ -58,7 +58,7 @@ final class Connection {
         defer { connecting = nil }
         activity.info(String(localized: "Connecting to \(server.title)…"))
         do {
-            let source = try await SFTPFileSource.connect(to: server, credential: credential)
+            let source = try await Remote.connect(to: server, credential: credential)
             pane = PaneModel(source: source)
             self.server = server
             activity.success(String(localized: "Connected to \(server.title). Opened \(source.startPath)."))
@@ -78,7 +78,7 @@ final class Connection {
         log.notice("Testing \(server.host, privacy: .public):\(server.port)")
         testState = .running
         do {
-            let source = try await SFTPFileSource.connect(to: server, credential: credential)
+            let source = try await Remote.connect(to: server, credential: credential)
             await source.disconnect()
             log.notice("Test succeeded")
             testState = .succeeded(folder: source.startPath)
@@ -116,7 +116,7 @@ final class Connection {
     }
 
     func disconnect() async {
-        if let source = pane?.source as? SFTPFileSource {
+        if let source = pane?.source as? any RemoteSource {
             await source.disconnect()
             activity.info(String(localized: "Disconnected from \(source.displayName)."))
         }

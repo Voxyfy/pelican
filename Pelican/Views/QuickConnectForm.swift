@@ -1,28 +1,6 @@
 import AppKit
 import SwiftUI
 
-/// Protocols Pelican will speak. Only SFTP works today; the rest show what's coming.
-enum TransferProtocol: String, CaseIterable, Identifiable {
-    case sftp = "SFTP", ftp = "FTP", ftps = "FTP with TLS/SSL", s3 = "Amazon S3",
-         r2 = "Cloudflare R2", webdav = "WebDAV"
-    var id: Self { self }
-    var isAvailable: Bool { self == .sftp }
-    var title: String {
-        switch self {
-        case .ftps: String(localized: "FTP with TLS/SSL")
-        default: rawValue
-        }
-    }
-    var symbol: String {
-        switch self {
-        case .sftp: "lock.shield.fill"
-        case .ftp, .ftps: "network"
-        case .s3, .r2: "cloud.fill"
-        case .webdav: "globe"
-        }
-    }
-}
-
 /// Transmit-style connection form: icon, title, labelled rows, then Add to Servers / Connect.
 struct QuickConnectForm: View {
     enum Mode { case connect, edit }
@@ -40,7 +18,6 @@ struct QuickConnectForm: View {
     @State private var keyText: String?
     @State private var keyNeedsPassphrase = false
     @State private var keyProblem: String?
-    @State private var kind = TransferProtocol.sftp
     @Environment(\.dismiss) private var dismiss
 
     init(server: Server? = nil, mode: Mode = .connect, connection: Connection,
@@ -62,7 +39,9 @@ struct QuickConnectForm: View {
 
     private var isValid: Bool {
         guard !server.host.trimmingCharacters(in: .whitespaces).isEmpty, !server.username.isEmpty else { return false }
-        if usesKey { return keyText != nil && keyProblem == nil && (!keyNeedsPassphrase || !password.isEmpty) }
+        if usesKey && server.kind == .sftp {
+            return keyText != nil && keyProblem == nil && (!keyNeedsPassphrase || !password.isEmpty)
+        }
         return !password.isEmpty
     }
 
@@ -70,32 +49,43 @@ struct QuickConnectForm: View {
         var copy = server
         copy.host = copy.host.trimmingCharacters(in: .whitespaces)
         copy.remotePath = remotePath.isEmpty ? nil : remotePath
-        copy.usesKey = usesKey ? true : nil
-        copy.keyName = usesKey ? server.keyName : nil
+        let key = usesKey && copy.kind == .sftp
+        copy.usesKey = key ? true : nil
+        copy.keyName = key ? server.keyName : nil
         return copy
     }
 
     private var credential: Credential {
-        if usesKey, let keyText { return .key(keyText, passphrase: password) }
+        if usesKey, server.kind == .sftp, let keyText { return .key(keyText, passphrase: password) }
         return .password(password)
+    }
+
+    /// Switching protocol also switches the port, unless the user typed a custom one.
+    private var protocolChoice: Binding<TransferProtocol> {
+        Binding(get: { server.kind }, set: { new in
+            if server.port == server.kind.defaultPort { server.port = new.defaultPort }
+            server.kind = new
+            if new != .sftp { usesKey = false }
+            connection.testState = nil
+        })
     }
 
     var body: some View {
         VStack(spacing: 22) {
             VStack(spacing: 12) {
-                Image(systemName: kind.symbol)
+                Image(systemName: server.kind.symbol)
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(width: 60, height: 60)
                     .background(Color.pelican.gradient, in: RoundedRectangle(cornerRadius: 14))
                 Text(mode == .edit ? String(localized: "Edit \(server.title)")
-                                   : String(localized: "Connect via \(kind.title)"))
+                                   : String(localized: "Connect via \(server.kind.title)"))
                     .font(.title2.weight(.semibold))
             }
 
             VStack(spacing: 0) {
                 row(String(localized: "Protocol")) {
-                    Picker("", selection: $kind) {
+                    Picker("", selection: protocolChoice) {
                         ForEach(TransferProtocol.allCases) { item in
                             Label(item.title, systemImage: item.symbol)
                                 .tag(item)
@@ -118,6 +108,7 @@ struct QuickConnectForm: View {
                 row(String(localized: "User Name")) {
                     TextField("", text: $server.username, prompt: Text("me"))
                 }
+                if server.kind == .sftp {
                 row(String(localized: "Sign In With")) {
                     Picker("", selection: $usesKey) {
                         Text(String(localized: "Password")).tag(false)
@@ -128,7 +119,8 @@ struct QuickConnectForm: View {
                     .fixedSize()
                     Spacer()
                 }
-                if usesKey {
+                }
+                if usesKey && server.kind == .sftp {
                     row(String(localized: "Key")) {
                         Button { chooseKey() } label: {
                             Label(keyText == nil ? String(localized: "Choose Key…") : (server.keyName ?? "key"),

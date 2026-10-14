@@ -126,5 +126,10 @@
   "The server didn't accept this key. Check that its public key is in authorized_keys.": "Sunucu bu anahtarı kabul etmedi. Açık anahtarın authorized_keys dosyasında olduğunu kontrol edin.",
   "This isn't an OpenSSH private key. Convert it with: ssh-keygen -p -f <key>": "Bu bir OpenSSH gizli anahtarı değil. Şu komutla dönüştürebilirsiniz: ssh-keygen -p -f <anahtar>",
   "This key is protected. Enter its passphrase.": "Bu anahtar parola korumalı. Anahtar parolasını girin.",
-  "key passphrase": "anahtar parolası"
+  "key passphrase": "anahtar parolası",
+  "%@ doesn't offer FTP with TLS/SSL. Try plain FTP, or ask your host.": "%@ sunucusu TLS/SSL ile FTP sunmuyor. Düz FTP'yi deneyin ya da hosting firmanıza sorun.",
+  "SSH keys only work with SFTP. Use a password for FTP.": "SSH anahtarı yalnızca SFTP ile çalışır. FTP için parola kullanın.",
+  "The certificate of %@ couldn't be verified. Shared hosting often uses its own certificate; trust it only if you expect that.": "%@ sunucusunun sertifikası doğrulanamadı. Paylaşımlı hostingler çoğu zaman kendi sertifikasını kullanır; yalnızca bunu bekliyorsanız güvenin.",
+  "The server is out of space for this file.": "Sunucuda bu dosya için yer kalmamış.",
+  "The server refused: %@": "Sunucu reddetti: %@"
 }

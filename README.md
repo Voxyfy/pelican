@@ -13,7 +13,7 @@
 
 Pelican moves files between your Mac and your servers. It's built with SwiftUI, runs only on macOS, and will be sold once on the Mac App Store for $4.99. No subscription.
 
-> **Status:** early development. Browsing this Mac and SFTP servers works, and so do uploads and downloads.
+> **Status:** early development. SFTP, FTP and FTPS servers work: browsing, transfers and file operations.
 
 ## Features
 
@@ -22,7 +22,7 @@ Pelican moves files between your Mac and your servers. It's built with SwiftUI, 
 | 🗂 | Dual-pane browser: this Mac on the left, the server on the right | Done |
 | 🔐 | SFTP with password, passwords kept in Keychain, host key check, Test Connection | Done |
 | 🔑 | SFTP with SSH key (ed25519; RSA on servers before OpenSSH 8.8) | Done |
-| 📡 | FTP and FTPS | Planned |
+| 📡 | FTP and FTPS (explicit TLS, encrypted data connections, certificate approval) | Done |
 | ☁️ | Amazon S3 and Cloudflare R2 | Planned |
 | ⭐️ | Saved servers | Done |
 | ↕️ | Drag and drop transfers with a queue and progress | Done |
@@ -73,6 +73,15 @@ A second container runs a current OpenSSH, to check key sign-in against newer se
 docker run -d --name pelican-sshd-modern -p 2223:2222 -e USER_NAME=pelican lscr.io/linuxserver/openssh-server
 ```
 
+And Pure-FTPd for FTP and FTPS:
+
+```sh
+docker run -d --name pelican-ftp -p 2121:21 -p 30000-30009:30000-30009 \
+  -e PUBLICHOST=127.0.0.1 -e FTP_USER_NAME=pelican -e FTP_USER_PASS=pelican-test \
+  -e FTP_USER_HOME=/home/pelican -e "ADDED_FLAGS=--tls=1" -e TLS_CN=pelican-ftp.test \
+  -e TLS_ORG=Pelican -e TLS_C=TR -e TLS_USE_DSAPRAM=true stilliard/pure-ftpd
+```
+
 When a server isn't running, its tests are skipped.
 
 ### Known limit: RSA keys on newer servers
@@ -86,7 +95,7 @@ Pelican/
   App/         App entry point
   Model/       FileItem, Server, Favorites, Keychain, activity log, and the FileSource protocol
   Local/       This Mac: folder listing and sandbox folder access
-  Remote/      SFTP (Citadel), transfers, host key trust, readable errors
+  Remote/      RemoteSource protocol; SFTP (Citadel), FTP/FTPS (SwiftNIO + NIOSSL), keys, trust, errors
   Transfer/    Transfer queue, drag and drop, Server Activity popover
   Views/       Window, pane and navigation state
   Resources/   App icon (Icon Composer), string catalog, Info.plist, entitlements

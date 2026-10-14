@@ -67,7 +67,7 @@ final class TransferQueue {
     }
     var hasFinished: Bool { transfers.contains { $0.state.isFinished } }
 
-    func upload(_ items: [FileItem], to folder: String, via server: SFTPFileSource,
+    func upload(_ items: [FileItem], to folder: String, via server: any RemoteSource,
                 onFinish: @escaping () -> Void) {
         for item in items {
             let target = (folder as NSString).appendingPathComponent(item.name)
@@ -80,7 +80,7 @@ final class TransferQueue {
         }
     }
 
-    func download(_ items: [FileItem], to folder: String, via server: SFTPFileSource,
+    func download(_ items: [FileItem], to folder: String, via server: any RemoteSource,
                   onFinish: @escaping () -> Void) {
         for item in items {
             let target = URL(filePath: folder, directoryHint: .isDirectory).appending(path: item.name)
@@ -93,7 +93,7 @@ final class TransferQueue {
     }
 
     /// Copies on the same server by downloading to a temporary folder and uploading again.
-    func copy(_ items: [(item: FileItem, name: String)], to folder: String, via server: SFTPFileSource,
+    func copy(_ items: [(item: FileItem, name: String)], to folder: String, via server: any RemoteSource,
               onFinish: @escaping () -> Void) {
         for (item, name) in items {
             let target = (folder as NSString).appendingPathComponent(name)
@@ -117,7 +117,7 @@ final class TransferQueue {
     }
 
     /// Downloads a file, or a folder whose `contents` came from `walk`.
-    private static func fetch(_ item: FileItem, contents: [FileItem], to target: URL, via server: SFTPFileSource,
+    private static func fetch(_ item: FileItem, contents: [FileItem], to target: URL, via server: any RemoteSource,
                               report: @escaping @Sendable (Int64) -> Void) async throws {
         guard item.isDirectory else {
             return try await server.download(from: item.path, size: item.size ?? 0, to: target, progress: report)
@@ -136,7 +136,7 @@ final class TransferQueue {
     }
 
     /// Uploads a local file or folder to `target`, creating folders as needed.
-    private static func send(_ source: URL, isDirectory: Bool, to target: String, via server: SFTPFileSource,
+    private static func send(_ source: URL, isDirectory: Bool, to target: String, via server: any RemoteSource,
                              report: @escaping @Sendable (Int64) -> Void) async throws {
         let plan = try LocalPlan(root: source, isDirectory: isDirectory)
         if isDirectory { try await server.makeDirectory(target) }

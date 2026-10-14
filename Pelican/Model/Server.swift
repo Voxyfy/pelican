@@ -13,6 +13,13 @@ struct Server: Identifiable, Codable, Hashable, Sendable {
     var usesKey: Bool? = nil
     /// File name of the chosen key, shown in the form; the key itself lives in Keychain.
     var keyName: String? = nil
+    /// Stored as optional so servers saved before FTP support still decode (as SFTP).
+    var protocolKind: TransferProtocol? = nil
+
+    var kind: TransferProtocol {
+        get { protocolKind ?? .sftp }
+        set { protocolKind = newValue == .sftp ? nil : newValue }
+    }
 
     var title: String { name.isEmpty ? host : name }
     var keychainAccount: String { "\(username)@\(host):\(port)" }

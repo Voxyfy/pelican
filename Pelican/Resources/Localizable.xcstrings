@@ -43,6 +43,16 @@
         }
       }
     },
+    "%@ doesn't offer FTP with TLS/SSL. Try plain FTP, or ask your host.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sunucusu TLS/SSL ile FTP sunmuyor. Düz FTP'yi deneyin ya da hosting firmanıza sorun."
+          }
+        }
+      }
+    },
     "%@ failed: %@": {
       "localizations": {
         "en": {
@@ -963,6 +973,16 @@
         }
       }
     },
+    "SSH keys only work with SFTP. Use a password for FTP.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH anahtarı yalnızca SFTP ile çalışır. FTP için parola kullanın."
+          }
+        }
+      }
+    },
     "Save": {
       "localizations": {
         "tr": {
@@ -1094,6 +1114,16 @@
         }
       }
     },
+    "The certificate of %@ couldn't be verified. Shared hosting often uses its own certificate; trust it only if you expect that.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sunucusunun sertifikası doğrulanamadı. Paylaşımlı hostingler çoğu zaman kendi sertifikasını kullanır; yalnızca bunu bekliyorsanız güvenin."
+          }
+        }
+      }
+    },
     "The connection was lost.": {
       "localizations": {
         "tr": {
@@ -1160,6 +1190,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sunucu burada bu işleme izin vermiyor."
+          }
+        }
+      }
+    },
+    "The server is out of space for this file.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucuda bu dosya için yer kalmamış."
+          }
+        }
+      }
+    },
+    "The server refused: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu reddetti: %@"
           }
         }
       }

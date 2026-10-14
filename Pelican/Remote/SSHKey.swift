@@ -16,6 +16,8 @@ enum SSHKey {
         /// An RSA key the server turned down. Usually the server is OpenSSH 8.8 or newer, which no
         /// longer accepts the SHA-1 RSA signatures Citadel makes.
         case rsaRefused
+        /// FTP has no key sign-in.
+        case keyNeedsSFTP
 
         var errorDescription: String? {
             switch self {
@@ -27,6 +29,8 @@ enum SSHKey {
                 String(localized: "This key is protected. Enter its passphrase.")
             case .wrongPassphrase:
                 String(localized: "The key's passphrase is incorrect.")
+            case .keyNeedsSFTP:
+                String(localized: "SSH keys only work with SFTP. Use a password for FTP.")
             case .rsaRefused:
                 String(localized: "The server didn't accept this RSA key. Newer servers refuse the RSA signature Pelican uses for now. Try an ed25519 key (ssh-keygen -t ed25519), and check that the public key is in authorized_keys.")
             }

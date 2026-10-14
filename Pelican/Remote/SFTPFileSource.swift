@@ -3,7 +3,7 @@ import Foundation
 import NIOSSH
 
 /// Browses a server over SFTP. One SSH connection per open pane.
-final class SFTPFileSource: FileSource, @unchecked Sendable {
+final class SFTPFileSource: RemoteSource, @unchecked Sendable {
     let server: Server
     let startPath: String
     let rootPath = "/"
