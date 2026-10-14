@@ -1,0 +1,67 @@
+name: Pelican
+options:
+  bundleIdPrefix: com.voxyfy
+  developmentLanguage: en
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+packages:
+  Citadel:
+    url: https://github.com/orlandos-nl/Citadel
+    from: "0.9.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+targets:
+  Pelican:
+    type: application
+    platform: macOS
+    sources:
+      - Pelican
+    dependencies:
+      - package: Citadel
+    entitlements:
+      path: Pelican/Resources/Pelican.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.security.files.user-selected.read-write: true
+        com.apple.security.files.bookmarks.app-scope: true
+    info:
+      path: Pelican/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Pelican
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, tr]
+        UTExportedTypeDeclarations:
+          - UTTypeIdentifier: com.voxyfy.pelican.pane-items
+            UTTypeDescription: Pelican Files
+            UTTypeConformsTo: [public.data]
+        LSApplicationCategoryType: public.app-category.developer-tools
+        NSHumanReadableCopyright: "© 2026 Voxyfy"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.voxyfy.pelican
+        ENABLE_HARDENED_RUNTIME: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  PelicanTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - PelicanTests
+    dependencies:
+      - target: Pelican
+schemes:
+  Pelican:
+    build:
+      targets:
+        Pelican: all
+        PelicanTests: [test]
+    test:
+      targets:
+        - PelicanTests

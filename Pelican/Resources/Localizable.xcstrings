@@ -1,0 +1,1384 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "": {
+      "shouldTranslate": false
+    },
+    "%@\n\n%@": {
+      "shouldTranslate": false
+    },
+    "%@ and %lld more": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ and %2$lld more"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ve %2$lld öğe daha"
+          }
+        }
+      }
+    },
+    "%@ copy": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kopyası"
+          }
+        }
+      }
+    },
+    "%@ didn't answer. Check the address and port.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ yanıt vermedi. Adresi ve portu kontrol edin."
+          }
+        }
+      }
+    },
+    "%@ failed: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ failed: %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ başarısız: %2$@"
+          }
+        }
+      }
+    },
+    "%@ keys aren't supported yet. Use an ed25519 or RSA key.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ anahtarları henüz desteklenmiyor. ed25519 ya da RSA anahtarı kullanın."
+          }
+        }
+      }
+    },
+    "%@ refused the connection on port %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ refused the connection on port %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sunucusu %2$@ portundaki bağlantıyı reddetti."
+          }
+        }
+      }
+    },
+    "%lld in progress": {
+      "extractionState": "stale",
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld aktarım sürüyor"
+          }
+        }
+      }
+    },
+    "%lld items already exist. Replace them?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld öğe zaten var. Değiştirilsin mi?"
+          }
+        }
+      }
+    },
+    "/www/project": {
+      "shouldTranslate": false
+    },
+    "Add to Servers": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunuculara Ekle"
+          }
+        }
+      }
+    },
+    "Address": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adres"
+          }
+        }
+      }
+    },
+    "All": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tümü"
+          }
+        }
+      }
+    },
+    "Allow Access": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erişime İzin Ver"
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri"
+          }
+        }
+      }
+    },
+    "Can't Open Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasör Açılamıyor"
+          }
+        }
+      }
+    },
+    "Can't find a server called %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ adında bir sunucu bulunamadı."
+          }
+        }
+      }
+    },
+    "Can't reach %@ on port %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Can't reach %1$@ on port %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sunucusuna %2$@ portundan ulaşılamıyor."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vazgeç"
+          }
+        }
+      }
+    },
+    "Cancel Transfer": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktarımı İptal Et"
+          }
+        }
+      }
+    },
+    "Cancelled": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İptal edildi"
+          }
+        }
+      }
+    },
+    "Cancelled %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ iptal edildi."
+          }
+        }
+      }
+    },
+    "Choose": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seç"
+          }
+        }
+      }
+    },
+    "Choose Folder…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasör Seç…"
+          }
+        }
+      }
+    },
+    "Choose Key…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar Seç…"
+          }
+        }
+      }
+    },
+    "Choose the folder Pelican can browse. Your home folder works best.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pelican'ın gezebileceği klasörü seçin. En iyi sonuç için ana klasörünüzü seçin."
+          }
+        }
+      }
+    },
+    "Choose your private key, for example id_ed25519 (not the .pub file).": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizli anahtarınızı seçin, örneğin id_ed25519 (.pub dosyasını değil)."
+          }
+        }
+      }
+    },
+    "Clear": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temizle"
+          }
+        }
+      }
+    },
+    "Clear Finished": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitenleri Temizle"
+          }
+        }
+      }
+    },
+    "Connect": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlan"
+          }
+        }
+      }
+    },
+    "Connect via %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ile Bağlan"
+          }
+        }
+      }
+    },
+    "Connected to %@. Opened %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Connected to %1$@. Opened %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sunucusuna bağlanıldı. %2$@ klasörü açıldı."
+          }
+        }
+      }
+    },
+    "Connecting to %@…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sunucusuna bağlanılıyor…"
+          }
+        }
+      }
+    },
+    "Connection test to %@ failed: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Connection test to %1$@ failed: %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ bağlantı testi başarısız: %2$@"
+          }
+        }
+      }
+    },
+    "Connection test to %@ succeeded.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bağlantı testi başarılı."
+          }
+        }
+      }
+    },
+    "Connection works. Signed in and opened %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlantı çalışıyor. Giriş yapıldı ve %@ klasörü açıldı."
+          }
+        }
+      }
+    },
+    "Copied %@ to %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Copied %1$@ to %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@ klasörüne kopyalandı."
+          }
+        }
+      }
+    },
+    "Copy Log": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaydı Kopyala"
+          }
+        }
+      }
+    },
+    "Couldn't Complete": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İşlem Tamamlanamadı"
+          }
+        }
+      }
+    },
+    "Couldn't connect to %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Couldn't connect to %1$@: %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sunucusuna bağlanılamadı: %2$@"
+          }
+        }
+      }
+    },
+    "Created folder %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ klasörü oluşturuldu."
+          }
+        }
+      }
+    },
+    "Date": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarih"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil"
+          }
+        }
+      }
+    },
+    "Delete %lld items permanently?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld öğe kalıcı olarak silinsin mi?"
+          }
+        }
+      }
+    },
+    "Delete “%@” permanently?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” kalıcı olarak silinsin mi?"
+          }
+        }
+      }
+    },
+    "Deleted %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ silindi."
+          }
+        }
+      }
+    },
+    "Delete…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil…"
+          }
+        }
+      }
+    },
+    "Disconnect": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlantıyı Kes"
+          }
+        }
+      }
+    },
+    "Disconnected from %@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bağlantısı kesildi."
+          }
+        }
+      }
+    },
+    "Download to %@": {
+      "extractionState": "stale",
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ klasörüne indir"
+          }
+        }
+      }
+    },
+    "Download to This Mac": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu Mac'e İndir"
+          }
+        }
+      }
+    },
+    "Downloaded %@ (%@) to %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Downloaded %1$@ (%2$@) to %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (%2$@), %3$@ klasörüne indirildi."
+          }
+        }
+      }
+    },
+    "Drop into %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ klasörüne bırakın"
+          }
+        }
+      }
+    },
+    "Edit %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Sunucusunu Düzenle"
+          }
+        }
+      }
+    },
+    "Edit…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzenle…"
+          }
+        }
+      }
+    },
+    "Enclosing Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapsayan Klasör"
+          }
+        }
+      }
+    },
+    "Errors Only": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca Hatalar"
+          }
+        }
+      }
+    },
+    "FTP with TLS/SSL": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TLS/SSL ile FTP"
+          }
+        }
+      }
+    },
+    "Failed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başarısız"
+          }
+        }
+      }
+    },
+    "Fill in Quick Connect and choose Add to Servers.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Bağlan'daki alanları doldurup Sunuculara Ekle'yi seçin."
+          }
+        }
+      }
+    },
+    "Hide Transfers": {
+      "extractionState": "stale",
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktarımları Gizle"
+          }
+        }
+      }
+    },
+    "Key": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar"
+          }
+        }
+      }
+    },
+    "Log": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kayıt"
+          }
+        }
+      }
+    },
+    "Move to Trash": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çöp Sepeti'ne Taşı"
+          }
+        }
+      }
+    },
+    "Moved %@ to %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Moved %1$@ to %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@ klasörüne taşındı."
+          }
+        }
+      }
+    },
+    "Moved %@ to the Trash.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Çöp Sepeti'ne taşındı."
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ad"
+          }
+        }
+      }
+    },
+    "Names can't contain “/”.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adlar “/” içeremez."
+          }
+        }
+      }
+    },
+    "New Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Klasör"
+          }
+        }
+      }
+    },
+    "No Servers Yet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz Sunucu Yok"
+          }
+        }
+      }
+    },
+    "No errors.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hata yok."
+          }
+        }
+      }
+    },
+    "Nothing yet.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz bir şey yok."
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamam"
+          }
+        }
+      }
+    },
+    "Optional": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İsteğe bağlı"
+          }
+        }
+      }
+    },
+    "Passphrase": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar Parolası"
+          }
+        }
+      }
+    },
+    "Password": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola"
+          }
+        }
+      }
+    },
+    "Pelican hasn't connected to %@ before.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pelican, %@ sunucusuna daha önce hiç bağlanmadı."
+          }
+        }
+      }
+    },
+    "Pelican needs your permission once to show the files on this Mac.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pelican'ın bu Mac'teki dosyaları gösterebilmesi için bir kereliğine izninize ihtiyacı var."
+          }
+        }
+      }
+    },
+    "Pelican — %@": {
+      "shouldTranslate": false
+    },
+    "Port": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port"
+          }
+        }
+      }
+    },
+    "Preparing…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazırlanıyor…"
+          }
+        }
+      }
+    },
+    "Protected": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola korumalı"
+          }
+        }
+      }
+    },
+    "Protocol": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protokol"
+          }
+        }
+      }
+    },
+    "Quick Connect": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Bağlan"
+          }
+        }
+      }
+    },
+    "Quick Connect…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Bağlan…"
+          }
+        }
+      }
+    },
+    "Remote Path": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uzak Klasör"
+          }
+        }
+      }
+    },
+    "Renamed %@ to %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Renamed %1$@ to %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@ olarak yeniden adlandırıldı."
+          }
+        }
+      }
+    },
+    "Rename…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeniden Adlandır…"
+          }
+        }
+      }
+    },
+    "Replace": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değiştir"
+          }
+        }
+      }
+    },
+    "SSH Key": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH Anahtarı"
+          }
+        }
+      }
+    },
+    "SSH keys are coming soon": {
+      "extractionState": "stale",
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH anahtarı desteği yakında geliyor"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaydet"
+          }
+        }
+      }
+    },
+    "Search Servers": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucularda Ara"
+          }
+        }
+      }
+    },
+    "Server Activity": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu Etkinliği"
+          }
+        }
+      }
+    },
+    "Server Identity Changed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucunun Kimliği Değişti"
+          }
+        }
+      }
+    },
+    "Servers": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucular"
+          }
+        }
+      }
+    },
+    "Show Hidden Files": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizli Dosyaları Göster"
+          }
+        }
+      }
+    },
+    "Show Transfers": {
+      "extractionState": "stale",
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktarımları Göster"
+          }
+        }
+      }
+    },
+    "Sign In With": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giriş Yöntemi"
+          }
+        }
+      }
+    },
+    "Signed in, but the server doesn't offer SFTP.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giriş yapıldı ama sunucu SFTP desteklemiyor."
+          }
+        }
+      }
+    },
+    "Size": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boyut"
+          }
+        }
+      }
+    },
+    "Skip Existing": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var Olanları Atla"
+          }
+        }
+      }
+    },
+    "Test Connection": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlantıyı Test Et"
+          }
+        }
+      }
+    },
+    "That's a public key. Choose the file without .pub.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu bir açık anahtar. Sonu .pub olmayan dosyayı seçin."
+          }
+        }
+      }
+    },
+    "The connection was lost.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlantı koptu."
+          }
+        }
+      }
+    },
+    "The file or folder no longer exists.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya ya da klasör artık yok."
+          }
+        }
+      }
+    },
+    "The identity of %@ has changed. Someone may be intercepting the connection.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sunucusunun kimliği değişmiş. Bağlantınız başka biri tarafından dinleniyor olabilir."
+          }
+        }
+      }
+    },
+    "The key's passphrase is incorrect.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar parolası yanlış."
+          }
+        }
+      }
+    },
+    "The server didn't accept this RSA key. Newer servers refuse the RSA signature Pelican uses for now. Try an ed25519 key (ssh-keygen -t ed25519), and check that the public key is in authorized_keys.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu bu RSA anahtarını kabul etmedi. Yeni sunucular, Pelican'ın şimdilik kullandığı RSA imzasını reddediyor. Bir ed25519 anahtarı deneyin (ssh-keygen -t ed25519) ve açık anahtarın authorized_keys dosyasında olduğunu kontrol edin."
+          }
+        }
+      }
+    },
+    "The server didn't accept this key. Check that its public key is in authorized_keys.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu bu anahtarı kabul etmedi. Açık anahtarın authorized_keys dosyasında olduğunu kontrol edin."
+          }
+        }
+      }
+    },
+    "The server doesn't allow this here.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu burada bu işleme izin vermiyor."
+          }
+        }
+      }
+    },
+    "The user name or password is incorrect.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanıcı adı veya parola yanlış."
+          }
+        }
+      }
+    },
+    "This Mac": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu Mac"
+          }
+        }
+      }
+    },
+    "This can't be undone.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu işlem geri alınamaz."
+          }
+        }
+      }
+    },
+    "This isn't an OpenSSH private key. Convert it with: ssh-keygen -p -f <key>": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu bir OpenSSH gizli anahtarı değil. Şu komutla dönüştürebilirsiniz: ssh-keygen -p -f <anahtar>"
+          }
+        }
+      }
+    },
+    "This key is protected. Enter its passphrase.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu anahtar parola korumalı. Anahtar parolasını girin."
+          }
+        }
+      }
+    },
+    "Transfers": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktarımlar"
+          }
+        }
+      }
+    },
+    "Trust New Key": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Anahtara Güven"
+          }
+        }
+      }
+    },
+    "Trust This Server?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu Sunucuya Güvenilsin mi?"
+          }
+        }
+      }
+    },
+    "Trust and Connect": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güven ve Bağlan"
+          }
+        }
+      }
+    },
+    "Trusted %@ with key %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Trusted %1$@ with key %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sunucusuna güvenildi, anahtar %2$@."
+          }
+        }
+      }
+    },
+    "Upload to %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sunucusuna yükle"
+          }
+        }
+      }
+    },
+    "Uploaded %@ (%@) to %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded %1$@ (%2$@) to %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (%2$@), %3$@ klasörüne yüklendi."
+          }
+        }
+      }
+    },
+    "User Name": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanıcı Adı"
+          }
+        }
+      }
+    },
+    "Waiting": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sırada"
+          }
+        }
+      }
+    },
+    "key passphrase": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "anahtar parolası"
+          }
+        }
+      }
+    },
+    "me": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kullanıcı"
+          }
+        }
+      }
+    },
+    "password": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "parola"
+          }
+        }
+      }
+    },
+    "server.com": {
+      "shouldTranslate": false
+    },
+    "untitled folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "adsız klasör"
+          }
+        }
+      }
+    },
+    "“%@” already exists. Choose a different name.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” zaten var. Başka bir ad seçin."
+          }
+        }
+      }
+    },
+    "“%@” already exists. Replace it?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” zaten var. Değiştirilsin mi?"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
