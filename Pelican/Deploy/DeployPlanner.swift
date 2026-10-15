@@ -46,8 +46,10 @@ enum DeployPlanner {
                 // Sent before: changed if edited locally since, or if the server copy went missing.
                 changed = last.size != file.size || abs(last.modified - file.modified) >= 1 || onServer?.size != file.size
             } else if let onServer, onServer.size == file.size, let date = onServer.modified,
-                      date.timeIntervalSince1970 >= file.modified {
-                changed = false // first deploy: same size and newer on the server
+                      date.timeIntervalSince1970 >= file.modified.rounded(.down) {
+                // First deploy: same size and not older on the server. Servers report whole
+                // seconds while this Mac keeps fractions, so compare at second precision.
+                changed = false
             } else {
                 changed = true
             }

@@ -1,6 +1,6 @@
 import Foundation
 
-/// A small XML tree, enough for S3's responses.
+/// A small XML tree, enough for S3's and WebDAV's responses.
 final class S3XML {
     let name: String
     var text = ""
@@ -13,9 +13,11 @@ final class S3XML {
     func all(_ child: String) -> [S3XML] { children.filter { $0.name == child } }
     func value(_ child: String) -> String? { self[child]?.text }
 
-    static func parse(_ data: Data) -> S3XML? {
+    /// With `localNames`, "D:href" and "d:href" both become "href" (WebDAV servers pick their own prefixes).
+    static func parse(_ data: Data, localNames: Bool = false) -> S3XML? {
         let builder = Builder()
         let parser = XMLParser(data: data)
+        parser.shouldProcessNamespaces = localNames
         parser.delegate = builder
         return parser.parse() ? builder.root : nil
     }

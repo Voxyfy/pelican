@@ -5,7 +5,6 @@ enum TransferProtocol: String, CaseIterable, Identifiable, Codable, Sendable {
     case sftp, ftp, ftps, s3, r2, webdav
 
     var id: Self { self }
-    var isAvailable: Bool { self != .webdav }
     var defaultPort: Int {
         switch self {
         case .sftp: 22

@@ -74,6 +74,16 @@ final class DeployTests: XCTestCase {
         XCTAssertEqual(css, ["site.css"])
     }
 
+    /// Servers report modification times in whole seconds; a file uploaded in the same second as
+    /// it was saved locally must still count as unchanged on the first publish.
+    func testFirstPublishIgnoresSubsecondDifferences() async throws {
+        let plan = try await makePlan(manifest: DeployManifest())
+        try await publish(plan)
+        let again = try await makePlan(manifest: DeployManifest()) // as if the manifest were lost
+        XCTAssertTrue(again.uploads.isEmpty, "\(again.uploads.map(\.relative))")
+        XCTAssertEqual(again.unchanged, 3)
+    }
+
     func testExcludePatterns() {
         let patterns = DeployTarget.defaultExcludes + ["storage/logs"]
         XCTAssertTrue(DeployPlanner.isExcluded(".git/config", by: patterns))

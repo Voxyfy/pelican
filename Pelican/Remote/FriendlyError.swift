@@ -15,6 +15,17 @@ enum FriendlyError {
             return String(localized: "This key can't list buckets. Enter a bucket name, for example /my-bucket.")
         case let s3 as S3Error:
             return transferMessage(for: s3)
+        case let dav as WebDAVError where dav.status == 401:
+            return String(localized: "The user name or password is incorrect.")
+        case let dav as WebDAVError where dav.notWebDAV:
+            return String(localized: "\(server.host) answered like a website, not a WebDAV server. Check the address; it often ends in a path such as /dav or /remote.php/dav/files/your-name.")
+        case let dav as WebDAVError where dav.status == 404 || dav.status == 409:
+            return String(localized: "That folder doesn't exist on the server.")
+        case let url as URLError where url.code == .serverCertificateUntrusted || url.code == .serverCertificateHasBadDate
+            || url.code == .serverCertificateHasUnknownRoot || url.code == .secureConnectionFailed:
+            return String(localized: "\(server.host) didn't present a valid HTTPS certificate.")
+        case let url as URLError where url.code == .timedOut:
+            return String(localized: "\(server.host) didn't answer. Check the address and port.")
         case let url as URLError where url.code == .cannotFindHost:
             return String(localized: "Can't find a server called \(server.host).")
         case let url as URLError where url.code == .cannotConnectToHost:
@@ -75,6 +86,20 @@ enum FriendlyError {
             case "BucketRename": return String(localized: "Buckets can't be renamed.")
             default: return s3.localizedDescription
             }
+        }
+        if let dav = error as? WebDAVError {
+            switch dav.status {
+            case 401, 403: return String(localized: "The server doesn't allow this here.")
+            case 404, 409: return String(localized: "The file or folder no longer exists.")
+            case 405: return String(localized: "The server won't do this here. On Apache this happens in folders with an index.html; ask your host to turn off DirectoryIndex for WebDAV.")
+            case 412: return String(localized: "Something with that name is already there.")
+            case 423: return String(localized: "The file is locked on the server.")
+            case 507: return String(localized: "The server is out of space for this file.")
+            default: return dav.localizedDescription
+            }
+        }
+        if let url = error as? URLError, url.code == .networkConnectionLost || url.code == .notConnectedToInternet {
+            return String(localized: "The connection was lost.")
         }
         // Citadel throws a server status either bare or wrapped, depending on the call.
         let status: SFTPMessage.Status

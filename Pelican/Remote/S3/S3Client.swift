@@ -247,7 +247,7 @@ enum SHA256Hex {
 
 /// Turns URLSession's running totals into the transfer queue's byte deltas, and makes sure
 /// the full size is counted even if a callback never comes.
-private final class ProgressTracker: NSObject, URLSessionTaskDelegate, URLSessionDownloadDelegate, @unchecked Sendable {
+final class ProgressTracker: NSObject, URLSessionTaskDelegate, URLSessionDownloadDelegate, @unchecked Sendable {
     private let report: @Sendable (Int64) -> Void
     private let reported = NIOLockedValueBox<Int64>(0)
 

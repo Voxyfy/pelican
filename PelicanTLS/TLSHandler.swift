@@ -1,4 +1,4 @@
-import CNIOBoringSSL
+internal import CNIOBoringSSL
 import Foundation
 import NIOConcurrencyHelpers
 import NIOCore

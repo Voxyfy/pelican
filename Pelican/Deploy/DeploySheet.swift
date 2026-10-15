@@ -104,8 +104,13 @@ private func header(_ title: String, subtitle: String) -> some View {
     .padding(18)
 }
 
+/// "~/code/site" instead of the full path. In the sandbox NSHomeDirectory() is the app's
+/// container, so the real home folder comes from the user database.
 private func abbreviate(_ path: String) -> String {
-    (path as NSString).abbreviatingWithTildeInPath
+    guard let entry = getpwuid(getuid()), let dir = entry.pointee.pw_dir else { return path }
+    let home = String(cString: dir)
+    let trimmed = path.count > 1 && path.hasSuffix("/") ? String(path.dropLast()) : path
+    return trimmed.hasPrefix(home + "/") ? "~" + trimmed.dropFirst(home.count) : trimmed
 }
 
 // MARK: - Site form

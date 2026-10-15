@@ -23,6 +23,16 @@
         }
       }
     },
+    "%@ answered like a website, not a WebDAV server. Check the address; it often ends in a path such as /dav or /remote.php/dav/files/your-name.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bir WebDAV sunucusu gibi değil, web sitesi gibi yanıt verdi. Adresi kontrol edin; adres çoğu zaman /dav ya da /remote.php/dav/files/kullanici-adiniz gibi bir yolla biter."
+          }
+        }
+      }
+    },
     "%@ copy": {
       "localizations": {
         "tr": {
@@ -39,6 +49,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ yanıt vermedi. Adresi ve portu kontrol edin."
+          }
+        }
+      }
+    },
+    "%@ didn't present a valid HTTPS certificate.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ geçerli bir HTTPS sertifikası sunmadı."
           }
         }
       }
@@ -1596,6 +1616,16 @@
         }
       }
     },
+    "Something with that name is already there.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu adda bir öğe zaten var."
+          }
+        }
+      }
+    },
     "Test Connection": {
       "localizations": {
         "tr": {
@@ -1622,6 +1652,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bu kova adı alınmış. Kova adları tüm kullanıcılar arasında tektir."
+          }
+        }
+      }
+    },
+    "That folder doesn't exist on the server.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu klasör sunucuda yok."
           }
         }
       }
@@ -1672,6 +1712,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bağlantı koptu."
+          }
+        }
+      }
+    },
+    "The file is locked on the server.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya sunucuda kilitli."
           }
         }
       }
@@ -1752,6 +1802,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sunucu reddetti: %@"
+          }
+        }
+      }
+    },
+    "The server won't do this here. On Apache this happens in folders with an index.html; ask your host to turn off DirectoryIndex for WebDAV.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunucu burada bu işleme izin vermiyor. Apache'de bu, içinde index.html olan klasörlerde olur; barındırma firmanızdan WebDAV için DirectoryIndex ayarını kapatmasını isteyin."
           }
         }
       }

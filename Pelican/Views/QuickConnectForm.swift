@@ -64,6 +64,7 @@ struct QuickConnectForm: View {
         switch server.kind {
         case .s3: "s3.amazonaws.com"
         case .r2: String(localized: "account-id.r2.cloudflarestorage.com")
+        case .webdav: "cloud.example.com/remote.php/dav/files/me"
         default: "server.com"
         }
     }
@@ -97,7 +98,6 @@ struct QuickConnectForm: View {
                         ForEach(TransferProtocol.allCases) { item in
                             Label(item.title, systemImage: item.symbol)
                                 .tag(item)
-                                .selectionDisabled(!item.isAvailable)
                         }
                     }
                     .labelsHidden()

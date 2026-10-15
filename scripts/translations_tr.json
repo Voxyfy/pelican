@@ -200,5 +200,11 @@
   "No Folders Here": "Burada Klasör Yok",
   "Choose this folder, or make a new one inside it.": "Bu klasörü seçin ya da içinde yeni bir klasör oluşturun.",
   "Choose This Folder": "Bu Klasörü Seç",
-  "This server requires TLS session reuse on file transfers, which Pelican doesn't support yet. Use SFTP or plain FTP for now.": "Bu sunucu dosya aktarımında TLS oturumunun yeniden kullanılmasını istiyor; Pelican bunu henüz desteklemiyor. Şimdilik SFTP ya da düz FTP kullanın."
+  "This server requires TLS session reuse on file transfers, which Pelican doesn't support yet. Use SFTP or plain FTP for now.": "Bu sunucu dosya aktarımında TLS oturumunun yeniden kullanılmasını istiyor; Pelican bunu henüz desteklemiyor. Şimdilik SFTP ya da düz FTP kullanın.",
+  "%@ answered like a website, not a WebDAV server. Check the address; it often ends in a path such as /dav or /remote.php/dav/files/your-name.": "%@ bir WebDAV sunucusu gibi değil, web sitesi gibi yanıt verdi. Adresi kontrol edin; adres çoğu zaman /dav ya da /remote.php/dav/files/kullanici-adiniz gibi bir yolla biter.",
+  "%@ didn't present a valid HTTPS certificate.": "%@ geçerli bir HTTPS sertifikası sunmadı.",
+  "Something with that name is already there.": "Bu adda bir öğe zaten var.",
+  "That folder doesn't exist on the server.": "Bu klasör sunucuda yok.",
+  "The file is locked on the server.": "Dosya sunucuda kilitli.",
+  "The server won't do this here. On Apache this happens in folders with an index.html; ask your host to turn off DirectoryIndex for WebDAV.": "Sunucu burada bu işleme izin vermiyor. Apache'de bu, içinde index.html olan klasörlerde olur; barındırma firmanızdan WebDAV için DirectoryIndex ayarını kapatmasını isteyin."
 }

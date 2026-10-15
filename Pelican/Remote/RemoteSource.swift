@@ -37,8 +37,9 @@ enum Remote {
         case .s3, .r2:
             guard case .password(let secret) = credential else { throw SSHKey.Problem.keyNeedsSFTP }
             return try await S3FileSource.connect(to: server, secret: secret)
-        default:
-            throw CocoaError(.featureUnsupported)
+        case .webdav:
+            guard case .password(let password) = credential else { throw SSHKey.Problem.keyNeedsSFTP }
+            return try await WebDAVFileSource.connect(to: server, password: password)
         }
     }
 }
